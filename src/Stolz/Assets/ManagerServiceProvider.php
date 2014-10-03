@@ -10,7 +10,7 @@ class ManagerServiceProvider extends ServiceProvider
 	 *
 	 * @var bool
 	 */
-	protected $defer = false;
+	protected $defer = true;
 
 	/**
 	 * Bootstrap the application events.
@@ -52,5 +52,15 @@ class ManagerServiceProvider extends ServiceProvider
 		$this->app->bind('stolz.assets.command.purgepipeline', function ($app) {
 			return new PurgePipelineCommand();
 		});
+	}
+
+	/**
+	 * Get the services provided by the provider.
+	 *
+	 * @return array
+	 */
+	public function provides()
+	{
+		return array('stolz.assets', 'stolz.assets.command.purgepipeline');
 	}
 }
